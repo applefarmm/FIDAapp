@@ -1,0 +1,18 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'fida'.
+> A build operation failed.
+      Could not move temporary workspace (C:\Users\admin-idjauh\.gradle\caches\8.13\transforms\dbf4b081ca7f82c2e9b39bef3d7b10e7-30e69270-f85d-433e-b4bf-b289e8903a46) to immutable location (C:\Users\admin-idjauh\.gradle\caches\8.13\transforms\dbf4b081ca7f82c2e9b39bef3d7b10e7)
+   > Could not move temporary workspace (C:\Users\admin-idjauh\.gradle\caches\8.13\transforms\dbf4b081ca7f82c2e9b39bef3d7b10e7-30e69270-f85d-433e-b4bf-b289e8903a46) to immutable location (C:\Users\admin-idjauh\.gradle\caches\8.13\transforms\dbf4b081ca7f82c2e9b39bef3d7b10e7)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 17s

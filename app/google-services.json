@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084253077418",
+    "project_id": "fida-242fb",
+    "storage_bucket": "fida-242fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084253077418:android:21536cef17add5f70a35d3",
+        "android_client_info": {
+          "package_name": "com.fida.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7sPwcQbMOFBcHmummF4vsHO-aUIjggM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

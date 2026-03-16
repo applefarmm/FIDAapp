@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">Fida</string>
+    <string name="open" translatable="false">Open</string>
+    <string name="close" translatable="false">Close</string>
+    <string name="you_drank_this_many_cups_of_water" translatable="false">You drank this many cups of water:</string>
+    <string name="_1water" translatable="false">+1 water</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="_1_water" translatable="false">-1 water</string>
+    <string name="set_target" translatable="false">Set Target</string>
+    <string name="set_time" translatable="false">Set Time</string>
+</resources>
