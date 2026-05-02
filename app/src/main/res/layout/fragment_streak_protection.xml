@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".fragments.StreakProtectionFragment">
+
+    <TextView
+        android:id="@+id/tvStreakProtectionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Streak Protection"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvStreakProtectionExplanationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="How Streak Shields Work:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@+id/tvStreakProtectionTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvStreakProtectionExplanation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Streak Shields protect your current activity streak if you miss a day. They automatically activate when you have shields available and miss a day. You can earn more shields through daily activity rewards or by reaching certain levels."
+        android:textSize="16sp"
+        android:textColor="#444444"
+        app:layout_constraintTop_toBottomOf="@+id/tvStreakProtectionExplanationLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivStreakShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_streak_shield" // Assuming you have this drawable
+        app:layout_constraintTop_toBottomOf="@+id/tvStreakProtectionExplanation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/blue"/>
+
+    <TextView
+        android:id="@+id/tvShieldCountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Available Shields:"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        app:layout_constraintTop_toBottomOf="@+id/ivStreakShield"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvShieldCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="x 3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        app:layout_constraintTop_toTopOf="@+id/tvShieldCountLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/tvShieldCountLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvShieldCountLabel"/>
+
+    <Button
+        android:id="@+id/btnUseShield"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/blue"
+        android:text="Use Shield Today"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvShieldCount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

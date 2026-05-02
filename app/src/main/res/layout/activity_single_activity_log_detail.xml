@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".SingleActivityLogDetailScreen">
+
+    <TextView
+        android:id="@+id/tvActivityTypeDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Activity Details"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTimestampDetailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Timestamp:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvTimestampDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityTypeDetail"/>
+
+    <TextView
+        android:id="@+id/tvTimestampDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Oct 27, 2023 at 10:30"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvTimestampDetailLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvSummaryDetailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityTypeDetail"/>
+
+    <TextView
+        android:id="@+id/tvSummaryDetailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Summary:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvSummaryDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimestampDetail"/>
+
+    <TextView
+        android:id="@+id/tvSummaryDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Distance: 5.2 km | Duration: 30:15"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvSummaryDetailLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimestampDetail"/>
+
+    <!-- Placeholder for more detailed information based on activity type -->
+    <TextView
+        android:id="@+id/tvDetailedInfoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Details:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailedInfo"
+        app:layout_constraintTop_toBottomOf="@+id/tvSummaryDetail"/>
+
+    <TextView
+        android:id="@+id/tvDetailedInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="XP Earned: 50 | Coins Earned: 20"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailedInfoLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSummaryDetail"/>
+
+    <TextView
+        android:id="@+id/tvBackToHistoryDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Back to History"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailedInfo"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

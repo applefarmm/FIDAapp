@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".RunDetailActivity">
+
+    <TextView
+        android:id="@+id/tvDetailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Run Details"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDetailDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Date:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvRunDateDetail"
+        app:layout_constraintTop_toBottomOf="@id/tvDetailTitle"/>
+
+    <TextView
+        android:id="@+id/tvRunDateDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="2023-10-27 10:30 AM"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailDateLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailDurationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailTitle"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailDurationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Duration:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvDurationDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvRunDateDetail"/>
+
+    <TextView
+        android:id="@+id/tvDurationDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailDurationLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailDistanceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvRunDateDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailDistanceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Distance:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvDistanceDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvDurationDetail"/>
+
+    <TextView
+        android:id="@+id/tvDistanceDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.00 km"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailDistanceLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailGoalTypeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvDurationDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailGoalTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Goal Type:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvGoalTypeDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistanceDetail"/>
+
+    <TextView
+        android:id="@+id/tvGoalTypeDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Distance"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailGoalTypeLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailGoalValueLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistanceDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailGoalValueLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Goal Value:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvGoalValueDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalTypeDetail"/>
+
+    <TextView
+        android:id="@+id/tvGoalValueDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="5.0 km"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailGoalValueLabel"
+        app:layout_constraintEnd_toStartOf="@+id/tvDetailCompletedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalTypeDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvDetailCompletedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Completed Goal:"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvCompletedDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalValueDetail"/>
+
+    <TextView
+        android:id="@+id/tvCompletedDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        app:layout_constraintStart_toEndOf="@+id/tvDetailCompletedLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalValueDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"/>
+
+    <TextView
+        android:id="@+id/tvBackToHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Back to History"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompletedDetail"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/ivAchievementIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_achievement_placeholder" />
+
+    <ImageView
+        android:id="@+id/ivLockIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_lock"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/ivAchievementIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAchievementIcon"
+        app:tint="#B0BEC5"/>
+
+    <TextView
+        android:id="@+id/tvAchievementTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Achievement Title"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/ivAchievementIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvAchievementDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Achievement Description"
+        android:textSize="10sp"
+        android:textColor="#888888"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAchievementTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
