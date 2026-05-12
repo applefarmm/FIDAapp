@@ -1,95 +1,130 @@
 package com.fida.app
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import com.fida.app.databinding.ActivitySignupBinding
-import com.google.firebase.Firebase
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.firestore
+import androidx.appcompat.app.AppCompatActivity
+import com.fida.app.utils.FirestoreRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 class SignupActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignupBinding
-
-    private val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        binding.signupButton.setOnClickListener{
-            val signupUsername = binding.signupUsername.text.toString()
-            val signupPassword = binding.signupPassword.text.toString()
-
-            if(signupUsername.isNotEmpty() && signupPassword.isNotEmpty()){
-                signupUser(signupUsername, signupPassword)
-            }
-            else{
-                Toast.makeText(this@SignupActivity, "Please Fill Out All Fields!", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        binding.loginRedirect.setOnClickListener {
-            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
-            finish()
-        }
-
+        setContentView(R.layout.activity_signup)
         supportActionBar?.hide()
-    }
 
-    private fun signupUser(username: String, password: String) {
-        val usersRef = db.collection("users")
-        val query = usersRef.whereEqualTo("username", username)
-        query.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                for (documentSnapshot in task.result!!) {
-                    val user = documentSnapshot.getString("username")
+        auth = FirebaseAuth.getInstance()
 
-                    if (user == username) {
-                        Toast.makeText(this@SignupActivity, "Username already exists!", Toast.LENGTH_SHORT).show()
+        val etEmail = findViewById<EditText>(R.id.etSignupEmail)
+        val etPassword = findViewById<EditText>(R.id.etSignupPassword)
+        val etConfirmPassword = findViewById<EditText>(R.id.etSignupConfirmPassword)
+        val btnSignup = findViewById<Button>(R.id.btnSignup)
+        val tvLogin = findViewById<TextView>(R.id.tvLoginRedirect)
+
+        btnSignup.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val confirmPassword = etConfirmPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (password != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Strong password validation
+            val passwordValidation = validatePassword(password)
+            if (!passwordValidation.first) {
+                Toast.makeText(this, passwordValidation.second, Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener { result ->
+                    val user = result.user
+                    Log.d("SignupActivity", "User created successfully: ${user?.uid}")
+
+                    if (user != null) {
+                        // Create Firestore document with default values
+                        val defaultDoc = FirestoreRepository.defaultUserDoc(
+                            user.uid,
+                            email,
+                            email.substringBefore("@") // default username from email
+                        )
+                        FirestoreRepository.createUser(user.uid, defaultDoc) { success ->
+                            if (success) {
+                                Log.d("SignupActivity", "Firestore document created")
+                                startActivity(Intent(this, ProfileSetup1Activity::class.java))
+                                finish()
+                            } else {
+                                Log.e("SignupActivity", "Failed to create Firestore document")
+                                Toast.makeText(this, "Account created but profile setup failed. Please try logging in.", Toast.LENGTH_LONG).show()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                                finish()
+                            }
+                        }
+                    } else {
+                        Log.e("SignupActivity", "User is null after signup")
+                        Toast.makeText(this, "Signup failed", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-
-
-
-            if (task.result!!.size() == 0) {
-                val allDays: Map<String, Any> = emptyMap()
-                val user = hashMapOf(
-                    "username" to username,
-                    "password" to password,
-                    "health"   to 100,
-                    "exp"      to 0,
-                    "maxExp"   to 100,
-                    "level"    to 1,
-                    "coin"     to 0,
-                    "maxStep"  to 2500,
-                    "maxWater" to 8,
-                    "allDays"  to allDays
-                )
-
-                // Add a new document with a generated ID
-                usersRef
-                    .document(username).set(user)
-                    .addOnSuccessListener { documentReference ->
-                        Toast.makeText(this@SignupActivity, "Signup Successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@SignupActivity,  LoginActivity::class.java))
-
+                .addOnFailureListener { e ->
+                    Log.e("SignupActivity", "Signup failed: ${e.message}", e)
+                    
+                    val errorMessage = when (e) {
+                        is FirebaseAuthWeakPasswordException -> "Password is too weak."
+                        is FirebaseAuthInvalidCredentialsException -> "Invalid email format."
+                        is FirebaseAuthUserCollisionException -> "This email is already registered."
+                        is FirebaseAuthException -> {
+                            when (e.errorCode) {
+                                "ERROR_OPERATION_NOT_ALLOWED" -> "Email/Password sign-in is NOT enabled in Firebase Console. Go to Authentication > Sign-in method and enable it."
+                                "ERROR_INVALID_EMAIL" -> "The email address is badly formatted."
+                                else -> e.localizedMessage ?: "Firebase error: ${e.errorCode}"
+                            }
+                        }
+                        else -> e.localizedMessage ?: "Signup failed. Please check your internet connection."
                     }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this@SignupActivity, "Signup Unsuccessful!", Toast.LENGTH_SHORT).show()
-                        Log.d(TAG, e.toString())
-                    }
-            }
+                    
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+                }
         }
+
+        tvLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun validatePassword(password: String): Pair<Boolean, String> {
+        if (password.length < 8) {
+            return Pair(false, "Password must be at least 8 characters")
+        }
+        if (!password.any { it.isUpperCase() }) {
+            return Pair(false, "Password must contain at least one uppercase letter")
+        }
+        if (!password.any { it.isLowerCase() }) {
+            return Pair(false, "Password must contain at least one lowercase letter")
+        }
+        if (!password.any { it.isDigit() }) {
+            return Pair(false, "Password must contain at least one number")
+        }
+        if (!password.any { !it.isLetterOrDigit() }) {
+            return Pair(false, "Password must contain at least one special character (!@#$%^&*)")
+        }
+        return Pair(true, "")
     }
 }

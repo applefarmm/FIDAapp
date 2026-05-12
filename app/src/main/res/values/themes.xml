@@ -8,7 +8,24 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- Default button styles with proper text color for light/dark themes -->
+        <item name="materialButtonStyle">@style/Widget.fida.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.fida.Button.Text</item>
     </style>
 
     <style name="Theme.fida" parent="Base.Theme.fida" />
+
+    <!-- MaterialButton style with proper text color for light/dark themes -->
+    <style name="Widget.fida.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/blue</item>
+    </style>
+
+    <style name="Widget.fida.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Widget.fida.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/blue</item>
+    </style>
 </resources>

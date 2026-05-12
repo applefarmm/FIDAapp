@@ -1,0 +1,9 @@
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    threshold: 6
+
+style:
+  MaxLineLength:
+    maxLineLength: 120

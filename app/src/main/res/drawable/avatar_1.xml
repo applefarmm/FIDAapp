@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Blue avatar -->
+    <path android:fillColor="#414BB2" android:pathData="M60,60m-60,0a60,60 0,1 1,120 0a60,60 0,1 1,-120 0"/>
+    <!-- Face -->
+    <path android:fillColor="#FFFFFF" android:pathData="M40,45a8,8 0,1,0 16,0a8,8 0,1,0 -16,0"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M64,45a8,8 0,1,0 16,0a8,8 0,1,0 -16,0"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M40,70 Q60,85 80,70" android:strokeWidth="3" android:strokeColor="#FFFFFF"/>
+</vector>

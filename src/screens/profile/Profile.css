@@ -1,0 +1,144 @@
+/* ── Profile Screen ─────────────────────────────────────── */
+.pf-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.pf-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+}
+
+/* Hero */
+.pf-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 0 24px;
+}
+
+.pf-avatar {
+  width: 88px;
+  height: 88px;
+  font-size: 48px;
+  background: rgba(255,255,255,.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #f5a623;
+  margin-bottom: 12px;
+  box-shadow: 0 0 24px rgba(245,166,35,.3);
+}
+
+.pf-name  { font-size: 22px; font-weight: 800; margin: 0 0 4px; }
+.pf-level { font-size: 13px; color: #f5a623; margin: 0 0 16px; }
+
+.pf-edit-btn {
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.pf-edit-btn:hover { background: rgba(255,255,255,.18); }
+
+/* Stats Grid */
+.pf-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.pf-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.07);
+  border-radius: 14px;
+  padding: 16px 10px;
+  gap: 4px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.pf-stat-value { font-size: 20px; font-weight: 800; color: #f5a623; }
+.pf-stat-label { font-size: 11px; color: #aaa; }
+
+/* Section */
+.pf-section       { margin-bottom: 24px; }
+.pf-section-title { font-size: 17px; font-weight: 700; margin: 0 0 14px; }
+
+/* Badges */
+.pf-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.pf-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 14px 8px;
+  gap: 6px;
+  border: 1px solid rgba(245,166,35,.3);
+}
+
+.pf-badge--locked {
+  opacity: .35;
+  filter: grayscale(1);
+  border-color: transparent;
+}
+
+.pf-badge-icon  { font-size: 28px; }
+.pf-badge-label { font-size: 10px; font-weight: 600; text-align: center; color: #ccc; }
+
+/* Settings */
+.pf-settings { display: flex; flex-direction: column; gap: 6px; }
+
+.pf-setting-row {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,.07);
+  border-radius: 12px;
+  padding: 14px;
+  border: none;
+  color: #fff;
+  gap: 14px;
+  cursor: pointer;
+  transition: background .2s;
+  text-align: left;
+}
+.pf-setting-row:hover { background: rgba(255,255,255,.12); }
+
+.pf-setting-icon  { font-size: 20px; }
+.pf-setting-label { flex: 1; font-size: 14px; font-weight: 500; }
+.pf-setting-arrow { font-size: 20px; color: #aaa; }
+
+/* Logout */
+.pf-logout {
+  width: 100%;
+  padding: 15px;
+  background: rgba(231,76,60,.15);
+  border: 1.5px solid rgba(231,76,60,.4);
+  color: #e74c3c;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background .2s;
+  margin-bottom: 12px;
+}
+.pf-logout:hover { background: rgba(231,76,60,.25); }

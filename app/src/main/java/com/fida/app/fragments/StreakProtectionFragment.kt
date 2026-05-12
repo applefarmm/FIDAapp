@@ -14,37 +14,36 @@ import com.fida.app.utils.PreferenceHelper
 
 class StreakProtectionFragment : Fragment() {
 
+    private lateinit var prefs: PreferenceHelper
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):
             View? {
         val view = inflater.inflate(R.layout.fragment_streak_protection, container, false)
+        prefs = PreferenceHelper(requireContext())
         setupViews(view)
         return view
     }
 
     private fun setupViews(view: View) {
-        val tvExplanation = view.findViewById<TextView>(R.id.tvStreakProtectionExplanation)
         val tvShieldCount = view.findViewById<TextView>(R.id.tvShieldCount)
         val btnUseShield = view.findViewById<Button>(R.id.btnUseShield)
 
-        val prefs = PreferenceHelper(requireContext())
-        val availableShields = prefs.getInt("streakShields") ?: 0
-
+        var availableShields = prefs.getInt("streakShields") ?: 0
         tvShieldCount.text = "Available Shields: $availableShields"
 
-        // TODO: Implement actual logic for using a shield
+        btnUseShield.isEnabled = availableShields > 0
+
         btnUseShield.setOnClickListener {
             if (availableShields > 0) {
-                // Logic to use a shield for the current day
-                // Decrement shield count, mark streak as protected for the day
-                prefs.saveInt("streakShields", availableShields - 1)
-                Toast.makeText(context, "Streak Shield used!", Toast.LENGTH_SHORT).show()
-                // Update UI to reflect shield usage
-                view.findViewById<TextView>(R.id.tvShieldCount).text = "Available Shields: ${availableShields - 1}"
-                btnUseShield.isEnabled = false // Disable after use
+                availableShields--
+                prefs.saveInt("streakShields", availableShields)
+                tvShieldCount.text = "Available Shields: $availableShields"
+                btnUseShield.isEnabled = availableShields > 0
+                Toast.makeText(context, "Streak Shield used! Your streak is safe for today.", Toast.LENGTH_LONG).show()
+                // TODO: Add logic to mark today's streak as 'protected'
             } else {
-                Toast.makeText(context, "You don't have enough shields.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "You don't have any shields.", Toast.LENGTH_SHORT).show()
             }
         }
-        btnUseShield.isEnabled = availableShields > 0
     }
 }

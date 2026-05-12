@@ -12,7 +12,28 @@
           "package_name": "com.fida.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1084253077418-2edcliuko6rkh7nkfem2jatbrlt6v501.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fida.app",
+            "certificate_hash": "176a571b67590eb247c3377c39e2dedc3f7de23f"
+          }
+        },
+        {
+          "client_id": "1084253077418-u65k0cgqq65480dqave982ekdph3lvnk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fida.app",
+            "certificate_hash": "b3c8e74b29d94780bcd08e569834b221290501b0"
+          }
+        },
+        {
+          "client_id": "1084253077418-vq9ddf5na43kf1ah68qtbnfg1c1pks9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC7sPwcQbMOFBcHmummF4vsHO-aUIjggM4"
@@ -20,7 +41,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084253077418-vq9ddf5na43kf1ah68qtbnfg1c1pks9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

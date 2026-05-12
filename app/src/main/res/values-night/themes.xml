@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="android:windowLightStatusBar">false</item>
+        <!-- Default button styles with proper text color for dark theme -->
+        <item name="materialButtonStyle">@style/Widget.fida.Button</item>
+        <item name="borderlessButtonStyle">@style/Widget.fida.Button.Text</item>
     </style>
 
     <style name="Theme.fida" parent="Base.Theme.fida" />

@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:padding="24dp"
     tools:context=".PreRunActivity">
 
     <TextView
         android:id="@+id/tvPreRunTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:text="Set Your Goal"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -27,44 +28,48 @@
         android:layout_marginTop="48dp"
         android:text="Goal Type:"
         android:textSize="18sp"
-        android:textColor="#888888"
+        android:textStyle="bold"
+        android:textColor="#222222"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rgGoalType"
         app:layout_constraintTop_toBottomOf="@+id/tvPreRunTitle"/>
 
     <RadioGroup
         android:id="@+id/rgGoalType"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@+id/tvGoalTypeLabel"
-        app:layout_constraintTop_toTopOf="@+id/tvGoalTypeLabel"
-        app:layout_constraintEnd_toStartOf="@+id/tvGoalValueLabel"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalTypeLabel">
 
         <RadioButton
             android:id="@+id/rbDistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:text="Distance (km)"
             android:textSize="16sp"
-            android:checked="true" />
+            android:textColor="#222222"
+            android:checked="true"
+            android:buttonTint="@color/blue" />
 
         <RadioButton
             android:id="@+id/rbTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:text="Time (minutes)"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"/>
+            android:textColor="#222222"
+            android:buttonTint="@color/blue" />
 
         <RadioButton
             android:id="@+id/rbCalories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:text="Calories (kcal)"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"/>
+            android:textColor="#222222"
+            android:buttonTint="@color/blue" />
     </RadioGroup>
 
     <TextView
@@ -74,54 +79,58 @@
         android:layout_marginTop="32dp"
         android:text="Goal Value:"
         android:textSize="18sp"
-        android:textColor="#888888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/etGoalValue"
-        app:layout_constraintTop_toBottomOf="@+id/rgGoalType"/>
-
-    <EditText
-        android:id="@+id/etGoalValue"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext_border"
-        android:hint="5"
-        android:inputType="numberDecimal"
-        android:padding="12dp"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tvGoalValueLabel"
-        app:layout_constraintEnd_toStartOf="@+id/tvKm"
-        app:layout_constraintTop_toBottomOf="@+id/rgGoalType"/>
-
-    <TextView
-        android:id="@+id/tvKm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="km"
-        android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="#222222"
-        app:layout_constraintStart_toEndOf="@+id/etGoalValue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etGoalValue"
-        app:layout_constraintBottom_toBottomOf="@+id/etGoalValue"
-        android:layout_marginStart="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgGoalType"/>
 
-    <Button
+    <LinearLayout
+        android:id="@+id/llGoalValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGoalValueLabel">
+
+        <EditText
+            android:id="@+id/etGoalValue"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:background="@drawable/edittext_border"
+            android:hint="5"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvGoalUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="km"
+            android:textSize="20sp"
+            android:textColor="#222222"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartRun"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="@color/blue"
         android:text="Start Run"
         android:textAllCaps="false"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etGoalValue"
-        android:layout_marginTop="48dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/llGoalValue"/>
 
     <TextView
         android:id="@+id/tvBackToHome"
@@ -130,7 +139,8 @@
         android:layout_marginTop="24dp"
         android:text="Back to Home"
         android:textColor="@color/blue"
-        android:textSize="15sp"
+        android:textSize="16sp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartRun"/>

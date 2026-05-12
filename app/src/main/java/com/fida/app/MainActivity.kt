@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.fida.app.utils.PreferenceHelper
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private val requestPermission =
 
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            // Do something if permission granted
             if (isGranted) {
                 Log.i("DEBUG", "permission granted")
             } else {
@@ -59,6 +59,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var level = 0
     private var coin = 0
 
+    // Firestore doc ID — use uid from SharedPreferences, NOT display username
+    private val safeUid: String by lazy {
+        PreferenceHelper(this).getUid() ?: ""
+    }
+
+    // Display name for UI only
+    private val safeUsername: String by lazy {
+        intent.getStringExtra("username")
+            ?: PreferenceHelper(this).getUsername()
+            ?: "User"
+    }
+
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +94,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                     "Coming soon!", Toast.LENGTH_SHORT).show()
                 R.id.miItem2 -> {
                     val intent = Intent(this@MainActivity, ShopActivity::class.java)
-                    intent.putExtra("username", this.intent.getStringExtra("username"))
+                    intent.putExtra("uid", safeUid)
                     startActivity(intent)
                 }
                 R.id.miItem3 -> Toast.makeText(applicationContext,
@@ -93,49 +105,49 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         val header: View = navView.getHeaderView(0)
         val usernameNavHeader: TextView = header.findViewById(R.id.username_navHeader)
-        usernameNavHeader.text = intent.getStringExtra("username")!!
+        usernameNavHeader.text = safeUsername
 
         val stepCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.stepCardView)
         stepCardView.setOnClickListener {
             val intent = Intent(this@MainActivity, StepCounterActivity::class.java)
-            intent.putExtra("username", this.intent.getStringExtra("username"))
+            intent.putExtra("uid", safeUid)
             startActivity(intent)
         }
         val waterCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.waterCardView)
         waterCardView.setOnClickListener {
-            val intent = Intent(this@MainActivity, WaterIntake::class.java)
-            intent.putExtra("username",this.intent.getStringExtra("username"))
+            val intent = Intent(this@MainActivity, WaterIntakeActivity::class.java)
+            intent.putExtra("uid", safeUid)
             startActivity(intent)
         }
         val sleepCardView = findViewById<com.google.android.material.card.MaterialCardView>(R.id.sleepCardView)
         sleepCardView.setOnClickListener {
             val intent = Intent(this@MainActivity, RecordSleepActivity::class.java)
-            intent.putExtra("username",this.intent.getStringExtra("username"))
+            intent.putExtra("uid", safeUid)
             startActivity(intent)
         }
 
         val sleepButton = findViewById<Button>(R.id.recordSleepButton)
         sleepButton.setOnClickListener {
             val intent = Intent(this@MainActivity, RecordSleepActivity::class.java)
-            intent.putExtra("username",this.intent.getStringExtra("username"))
+            intent.putExtra("uid", safeUid)
             startActivity(intent)
         }
 
-        loadData(intent.getStringExtra("username")!!)
-        changeWaterCounter(this.intent.getStringExtra("username")!!)
+        loadData(safeUid)
+        changeWaterCounter(safeUid)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     }
 
     override fun onStart() {
         super.onStart()
-        loadData(intent.getStringExtra("username")!!)
-        updateToDate(intent.getStringExtra("username")!!)
+        loadData(safeUid)
+        updateToDate(safeUid)
     }
 
     override fun onStop() {
         super.onStop()
-        updateToDate(intent.getStringExtra("username")!!)
+        updateToDate(safeUid)
         checkStepGoalAchieved()
     }
 
@@ -149,7 +161,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         running = true
-
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
@@ -176,7 +187,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    private fun changeWaterCounter(username: String) {
+    private fun changeWaterCounter(uid: String) {
         val waterCounterTextView : TextView = findViewById(R.id.waterTaken)
         val addWaterButton : Button = findViewById(R.id.addWater)
         val removeWaterButton : Button = findViewById(R.id.removeWater)
@@ -186,7 +197,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             waterCounterTextView.text = waterCounter.toString()
 
             incrementExp(20)
-            updateWaterCounter(username)
+            updateWaterCounter(uid)
         }
 
         removeWaterButton.setOnClickListener {
@@ -195,7 +206,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 waterCounterTextView.text = waterCounter.toString()
 
                 incrementExp(-20)
-                updateWaterCounter(username)
+                updateWaterCounter(uid)
             }
         }
     }
@@ -231,15 +242,17 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.apply()
     }
 
-    // Load All User Info
-    private fun loadData(username : String) {
+    // Load All User Info — uses uid (Firebase document ID), NOT username
+    private fun loadData(uid: String) {
+        if (uid.isEmpty()) return
+
         val currentTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences.getFloat("previousTotalSteps", 0f)
         Log.d("MainActivity", "$savedNumber")
         previousTotalSteps = savedNumber
 
-        val userRef = db.collection("users").document(username)
+        val userRef = db.collection("users").document(uid)
 
         val waterCounterTextView : TextView = findViewById(R.id.waterTaken)
         val currentHealthTextView : TextView = findViewById(R.id.currentHealth)
@@ -253,43 +266,49 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val expBar : com.google.android.material.progressindicator.LinearProgressIndicator = findViewById(R.id.expBar)
         val stepProgressBar : com.google.android.material.progressindicator.LinearProgressIndicator = findViewById(R.id.stepProgressBar)
 
-
         userRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val documentSnapshot = task.result
-                if (documentSnapshot.exists()) {
-                    if ((documentSnapshot.data?.get("allDays") as (HashMap<*, *>))[currentTime] != null) {
-                        waterCounter = ((documentSnapshot.data?.get("allDays") as (HashMap<*, *>))[currentTime] as (HashMap<*, *>))["waterCounter"].toString().toInt()
-                        waterCounterTextView.text = waterCounter.toString()
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    val data = documentSnapshot.data
+                    if (data != null) {
+                        @Suppress("UNCHECKED_CAST")
+                        val allDays = data["allDays"] as? Map<String, Any>
+                        val todayData = allDays?.get(currentTime) as? Map<String, Any>
 
-                        maxStepAchieved = ((documentSnapshot.data?.get("allDays") as (HashMap<*, *>))[currentTime] as (HashMap<*, *>))["maxStepAchieved"] as Boolean
-                        sleepTime = ((documentSnapshot.data?.get("allDays") as (HashMap<*, *>))[currentTime] as (HashMap<*, *>))["sleepTime"].toString().toFloat()
+                        if (todayData != null) {
+                            waterCounter = (todayData["waterCounter"] as? Long)?.toInt() ?: 0
+                            waterCounterTextView.text = waterCounter.toString()
+
+                            maxStepAchieved = todayData["maxStepAchieved"] as? Boolean ?: false
+                            sleepTime = todayData["sleepTime"]?.toString()?.toFloatOrNull() ?: 0f
+                        }
+
+                        healthPoint = (data["health"] as? Long)?.toInt() ?: 100
+                        currentHealthTextView.text = healthPoint.toString()
+                        healthBar.setProgressCompat(healthPoint, true)
+
+                        expPoint = (data["exp"] as? Long)?.toInt() ?: 0
+                        currentExpTextView.text = expPoint.toString()
+                        expBar.setProgressCompat(expPoint, true)
+
+                        maxExpPoint = (data["maxExp"] as? Long)?.toInt() ?: 100
+                        maxExpTextView.text = maxExpPoint.toString()
+                        expBar.max = maxExpPoint
+
+                        level = (data["level"] as? Long)?.toInt() ?: 1
+                        levelTextView.text = level.toString()
+
+                        coin = (data["coin"] as? Long)?.toInt() ?: 0
+                        coinTextView.text = coin.toString()
+
+                        maxStep = (data["maxStep"] as? Long)?.toInt() ?: 2500
+                        maxStepTextView.text = maxStep.toString()
+                        stepProgressBar.max = maxStep
+
+                        maxWater = (data["maxWater"] as? Long)?.toInt() ?: 8
+                        maxWaterTextView.text = maxWater.toString()
                     }
-
-                    healthPoint = documentSnapshot.data?.get("health").toString().toInt()
-                    currentHealthTextView.text = healthPoint.toString()
-                    healthBar.setProgressCompat(healthPoint, true)
-
-                    expPoint = documentSnapshot.data?.get("exp").toString().toInt()
-                    currentExpTextView.text = expPoint.toString()
-                    expBar.setProgressCompat(expPoint, true)
-
-                    maxExpPoint = documentSnapshot.data?.get("maxExp").toString().toInt()
-                    maxExpTextView.text = maxExpPoint.toString()
-                    expBar.max = maxExpPoint
-
-                    level = documentSnapshot.data?.get("level").toString().toInt()
-                    levelTextView.text = level.toString()
-
-                    coin = documentSnapshot.data?.get("coin").toString().toInt()
-                    coinTextView.text = coin.toString()
-
-                    maxStep = documentSnapshot.data?.get("maxStep").toString().toInt()
-                    maxStepTextView.text = maxStep.toString()
-                    stepProgressBar.max = maxStep
-
-                    maxWater = documentSnapshot.data?.get("maxWater").toString().toInt()
-                    maxWaterTextView.text = maxWater.toString()
                 }
             }
         }
@@ -298,19 +317,25 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
     }
 
-    private fun updateToDate(username: String) {
+    // updateToDate — uses uid for Firestore, not username
+    private fun updateToDate(uid: String) {
+        if (uid.isEmpty()) return
+
         val currentTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
-        val userRef = db.collection("users").document(username)
+        val userRef = db.collection("users").document(uid)
         userRef.get().addOnCompleteListener { task ->
-            // Add a new document with a generated ID
             if (task.isSuccessful) {
                 val documentSnapshot = task.result
                 if (documentSnapshot != null && documentSnapshot.exists()) {
+                    val data = documentSnapshot.data
+                    if (data != null) {
+                        @Suppress("UNCHECKED_CAST")
+                        val allDays = data["allDays"] as? Map<String, Any>
 
-                    // If current date map doesn't exist in allDays, reset step counter
-                    if (!(documentSnapshot.data?.get("allDays") as (HashMap<*, *>)).containsKey(currentTime)) {
-                        resetSteps()
+                        if (allDays == null || !allDays.containsKey(currentTime)) {
+                            resetSteps()
+                        }
                     }
                 }
             }
@@ -329,12 +354,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                     "allDays.${currentTime}.sleepTime", sleepTime
                 )
                 .addOnSuccessListener {
-//                    Toast.makeText(this@MainActivity, "Today added!", Toast.LENGTH_SHORT).show()
+                    Log.d("MainActivity", "Data saved for $currentTime")
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(
                         this@MainActivity,
-                        "Error while adding today",
+                        "Error while saving data",
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.d(ContentValues.TAG, e.toString())
@@ -375,22 +400,24 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         expBar.max = maxExpPoint
 
         Toast.makeText(this@MainActivity, "Level Up!", Toast.LENGTH_SHORT).show()
-        updateToDate(intent.getStringExtra("username")!!)
+        updateToDate(safeUid)
     }
 
     private fun checkStepGoalAchieved() {
         if ((totalSteps - previousTotalSteps) >= maxStep && !maxStepAchieved) {
             incrementExp(100)
             maxStepAchieved = true
-            updateToDate(intent.getStringExtra("username")!!)
+            updateToDate(safeUid)
             Toast.makeText(this@MainActivity, "Step Goal Achieved!", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun updateWaterCounter(username: String) {
+    private fun updateWaterCounter(uid: String) {
+        if (uid.isEmpty()) return
+
         val currentTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
-        val userRef = db.collection("users").document(username)
-        userRef.get().addOnCompleteListener { task ->
+        val userRef = db.collection("users").document(uid)
+        userRef.get().addOnCompleteListener {
             userRef
                 .update(
                     "allDays.${currentTime}.waterCounter", waterCounter,
@@ -398,7 +425,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 .addOnFailureListener { e ->
                     Toast.makeText(
                         this@MainActivity,
-                        "Error while updating",
+                        "Error while updating water",
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.d(ContentValues.TAG, e.toString())

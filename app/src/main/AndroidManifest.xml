@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -14,33 +22,102 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.fida"
         tools:targetApi="31">
+
+        <!-- Facebook SDK Metadata - DISABLED until proper app ID is configured
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
-            android:name=".RecordSleepActivity"
-            android:exported="false" />
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
         <activity
-            android:name=".ShopActivity"
-            android:exported="false" />
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        -->
+
+        <!-- Launcher Activity - Splash -->
         <activity
-            android:name=".WaterIntake"
-            android:exported="false" />
-        <activity
-            android:name=".StepCounterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+
+        <!-- Auth Activities -->
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".SignupActivity" android:exported="false" />
+
+        <!-- Onboarding -->
+        <activity android:name=".OnboardingActivity" android:exported="false" />
+        <activity android:name=".ProfileSetup1Activity" android:exported="false" />
+        <activity android:name=".ProfileSetup2Activity" android:exported="false" />
+        <activity android:name=".AvatarCustomizationActivity" android:exported="false" />
+        <activity android:name=".ProfileSetup3Activity" android:exported="false" />
+
+        <!-- Main Activities -->
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="false" />
+
+        <!-- Activity Logging -->
+        <activity android:name=".WaterIntakeActivity" android:exported="false" />
+        <activity android:name=".RecordSleepActivity" android:exported="false" />
+
+        <!-- History -->
+        <activity android:name=".WaterHistoryActivity" android:exported="false" />
+        <activity android:name=".SleepHistoryActivity" android:exported="false" />
+
+        <!-- Running Flow -->
+        <activity android:name=".PreRunActivity" android:exported="false" />
+        <activity android:name=".RunCountdownActivity" android:exported="false" />
+        <activity android:name=".RunTrackingActivity" android:exported="false" />
+        <activity android:name=".RunSummaryActivity" android:exported="false" />
+        <activity android:name=".RunHistoryActivity" android:exported="false" />
+        <activity android:name=".RunDetailActivity" android:exported="false" />
+
+        <!-- Gamification -->
+        <activity android:name=".GamificationActivity" android:exported="false" />
+        <activity android:name=".QuestBoardActivity" android:exported="false" />
+        <activity android:name=".BadgeSystemActivity" android:exported="false" />
+        <activity android:name=".DailyRewardActivity" android:exported="false" />
+        <activity android:name=".ShopActivity" android:exported="false" />
+
+        <!-- Support & Misc -->
+        <activity android:name=".TutorialActivity" android:exported="false" />
+
+        <!-- Settings -->
+        <activity android:name=".SettingsActivity" android:exported="false" />
+
+        <!-- Step Counter -->
+        <activity android:name=".StepCounterActivity" android:exported="true" />
+
+        <!-- Step Tracking Service -->
+        <service
+            android:name=".services.StepTrackingService"
+            android:exported="false"
+            android:foregroundServiceType="health" />
+
+        <!-- Boot Receiver to restart step tracking on device reboot -->
+        <receiver
+            android:name=".services.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

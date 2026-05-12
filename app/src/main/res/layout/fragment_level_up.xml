@@ -7,10 +7,12 @@
     tools:context=".fragments.LevelUpFragment">
 
     <TextView
+        android:id="@+id/tvLevelUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level Up Screen"
-        android:textSize="24sp"
+        android:text="Level Up!"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

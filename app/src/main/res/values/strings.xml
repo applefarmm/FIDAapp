@@ -1,4 +1,7 @@
 <resources>
+    <string name="default_web_client_id" translatable="false">1084253077418-vq9ddf5na43kf1ah68qtbnfg1c1pks9m.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">YOUR_FACEBOOK_APP_ID</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fbYOUR_FACEBOOK_APP_ID</string>
     <string name="app_name" translatable="false">Fida</string>
     <string name="open" translatable="false">Open</string>
     <string name="close" translatable="false">Close</string>
@@ -8,4 +11,11 @@
     <string name="_1_water" translatable="false">-1 water</string>
     <string name="set_target" translatable="false">Set Target</string>
     <string name="set_time" translatable="false">Set Time</string>
+    <string name="item_image" translatable="false">Item image</string>
+    <string name="coin" translatable="false">Coin</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="purchase" translatable="false">Purchase</string>
+    <string name="your_coins" translatable="false">Your coins: %d</string>
+    <string name="not_enough_coins" translatable="false">Not enough coins!</string>
+    <string name="purchase_success" translatable="false">Purchase successful!</string>
 </resources>

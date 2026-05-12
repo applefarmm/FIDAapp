@@ -1,0 +1,86 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Times New Roman;}{\f1 Arial;}}
+{\colortbl;\red0\green0\blue0;\red255\green0\blue0;\red0\green128\blue0;\red0\green0\blue128;}
+\f0\fs24\paperw11906\paperh16838\margl1440\margr1440\margt1440\margb1440
+{\pard\qc\b\fs40 FIDA SOFTWARE TESTING REPORT\par}
+{\pard\qc\fs24 University of Technology\par}
+{\pard\qc\fs24 Faculty of Computer Science\par}
+{\pard\qc\fs24 Mobile Application Testing & Validation\par}
+{\pard\qc\fs24\par}
+{\pard\qc\fs24 Submitted by: Student Name\par}
+{\pard\qc\fs24 Date: May 12, 2026\par}
+\page
+{\pard\b\fs32 1. Introduction\par}
+{\pard The FIDA Android app is a gamified fitness application designed to promote daily physical activity through real-time tracking, streaks, badges, and rewards. The app integrates GPS-based run tracking, step counting, water intake logging, sleep monitoring, and a comprehensive reward economy using XP, coins, and gems. Testing was performed on Android 12+ (API 31+) devices. Testing objectives include validating functional correctness, ensuring data consistency, UI responsiveness, and permission handling.\par}
+{\pard\par}
+{\pard\b\fs28 1.1 Scope\par}
+{\pard The following modules are covered in this report:\par}
+{\pard - Authentication (Login, Signup, Google Sign-In, Onboarding)\par}
+{\pard - Profile Setup (3-step wizard)\par}
+{\pard - GPS Run Tracking (PreRun, Countdown, Tracking, Summary)\par}
+{\pard - Step Counter (Sensor service, daily baseline, Firestore sync)\par}
+{\pard - Water Intake Tracker\par}
+{\pard - Sleep Tracker\par}
+{\pard - Gamification (XP, Coins, Gems, Badges, Streaks, Daily Rewards)\par}
+{\pard - Shop & Power-Up System\par}
+{\pard - Leaderboard\par}
+{\pard - Settings (Account, Privacy, Notifications)\par}
+{\pard - Navigation & Bottom Navigation Bar\par}
+{\pard\par}
+{\pard\b\fs28 1.2 Test Environment\par}
+{\pard - Device: Android 12+ (API 31+), tested on Xiaomi device\par}
+{\pard - Build: Debug APK, compileSdk 36, minSdk 28\par}
+{\pard - Backend: Firebase Auth + Firestore + Realtime Database\par}
+{\pard - Build command: ./gradlew.bat --no-daemon assembleDebug\par}
+{\pard\par}
+{\pard\b\fs32 2. Black Box Testing\par}
+{\pard\b\fs28 2.1 Functional Test Cases\par}
+{\pard\par}
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+{\b ID}\intbl\cell {\b Description}\intbl\cell {\b Steps}\intbl\cell {\b Expected Result}\intbl\cell {\b Actual Result}\intbl\cell {\b Status}\intbl\cell\row
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+FB-001\intbl\cell Valid Email Login\intbl\cell 1. Open app 2. Enter valid email/password 3. Tap Login\intbl\cell User navigates to HomeActivity with Dashboard tab active\intbl\cell User navigated to HomeActivity successfully\intbl\cell {\cf3 Pass}\intbl\cell\row
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+FB-002\intbl\cell Invalid Password Login\intbl\cell 1. Enter valid email 2. Enter wrong password 3. Tap Login\intbl\cell Error message shown, user stays on LoginActivity\intbl\cell Firebase auth error toast displayed\intbl\cell {\cf3 Pass}\intbl\cell\row
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+FB-003\intbl\cell Google Sign-In\intbl\cell 1. Tap Sign in with Google 2. Select Google account 3. Confirm\intbl\cell User authenticated and navigated to HomeActivity\intbl\cell User authenticated and navigated to HomeActivity\intbl\cell {\cf3 Pass}\intbl\cell\row
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+FB-004\intbl\cell New User Signup\intbl\cell 1. Tap Sign Up 2. Enter name, email, password 3. Tap Register\intbl\cell Account created, user directed to OnboardingActivity\intbl\cell Account created, onboarding launched\intbl\cell {\cf3 Pass}\intbl\cell\row
+\trowd\trgaph108\trleft-108
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx900
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx2500
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx4800
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx7100
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx9200
+\clbrdrt\brdrs\brdrw10\clbrdrl\brdrs\brdrw10\clbrdrb\brdrs\brdrw10\clbrdrr\brdrs\brdrw10\cellx10200
+FB-005\intbl\cell Duplicate Email Signup\intbl\cell 1. Tap Sign Up 2. Enter already-registered email 3. Tap Register\intbl\cell Error shown: email already in use\intbl\cell Firebase error toast: email already in use\intbl\cell {\cf3 Pass}\intbl\cell\row

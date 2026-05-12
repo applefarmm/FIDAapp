@@ -1,0 +1,111 @@
+/* ── GoalSetter (onboarding step 2) ─────────────────────────────────── */
+.gs-screen {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0d0d1a 0%, #1a1a2e 60%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.gs-container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Progress dots */
+.gs-progress {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.gs-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.3s;
+}
+.gs-dot--done   { background: #6C63FF; }
+.gs-dot--active { background: #fff; }
+
+/* Back button */
+.gs-back {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: #a0a0c0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+  width: fit-content;
+}
+.gs-back:hover { color: #fff; }
+
+/* Header */
+.gs-header { display: flex; flex-direction: column; gap: 0.3rem; }
+.gs-title  { font-size: 1.6rem; font-weight: 700; color: #fff; margin: 0; }
+.gs-subtitle { font-size: 0.9rem; color: #a0a0c0; margin: 0; }
+
+/* Goal grid */
+.gs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.gs-card {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.gs-card:hover {
+  background: rgba(108,99,255,0.15);
+  border-color: rgba(108,99,255,0.5);
+}
+.gs-card--selected {
+  background: rgba(108,99,255,0.2);
+  border-color: #6C63FF;
+  box-shadow: 0 0 20px rgba(108,99,255,0.3);
+}
+
+.gs-card-emoji { font-size: 2rem; }
+.gs-card-label { font-size: 0.95rem; font-weight: 700; color: #fff; }
+.gs-card-desc  { font-size: 0.78rem; color: #a0a0c0; text-align: center; }
+.gs-card-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  font-size: 0.75rem;
+  color: #6C63FF;
+  font-weight: 700;
+}
+
+/* Continue button */
+.gs-continue {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #6C63FF, #9D4EDD);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.gs-continue:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.gs-continue:disabled { opacity: 0.4; cursor: not-allowed; }

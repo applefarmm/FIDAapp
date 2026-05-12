@@ -7,6 +7,18 @@
     android:background="#FFFFFF"
     tools:context=".GamificationActivity">
 
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/ivBackGamification"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_back_arrow"
+        android:contentDescription="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvGamificationTitle"
         android:layout_width="wrap_content"

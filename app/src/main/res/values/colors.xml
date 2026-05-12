@@ -12,10 +12,14 @@
     <color name="middleGradient">#b77bb9</color>
     <color name="day">#fd9f00</color>
 
-
     <color name="primaryTextColor">#FF000000</color>
+    <color name="secondaryTextColor">#757575</color>
 
-
-
+    <color name="green_500">#4CAF50</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="purple">#9C27B0</color>
 
 </resources>

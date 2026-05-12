@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A2E">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Fitness Goal"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 3 of 3"
+            android:textColor="#A0A0A0"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is your primary fitness goal?"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgFitnessGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp">
+
+            <RadioButton
+                android:id="@+id/rbLoseWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lose Weight"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/rbBuildMuscle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Build Muscle"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/rbImproveEndurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Improve Endurance"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/rbStayHealthy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stay Healthy"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"/>
+
+            <RadioButton
+                android:id="@+id/rbIncreaseFlexibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Increase Flexibility"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:padding="12dp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnFinish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Started!"
+            android:backgroundTint="#6C63FF"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:padding="14dp"/>
+
+    </LinearLayout>
+</ScrollView>

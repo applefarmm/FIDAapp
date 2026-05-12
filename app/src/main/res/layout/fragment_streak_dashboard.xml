@@ -70,7 +70,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_streak_shield" // Assuming you have this drawable
+        android:src="@drawable/ic_streak_shield"
         app:layout_constraintTop_toBottomOf="@+id/tvLongestStreak"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -99,16 +99,15 @@
         app:layout_constraintTop_toBottomOf="@+id/ivStreakShields"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Placeholder for a calendar view or heatmap -->
-    <TextView
+    <!-- Streak calendar heatmap grid -->
+    <GridLayout
+        android:id="@+id/streakCalendarGrid"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
-        android:text="Calendar view will be implemented here."
-        android:textSize="14sp"
-        android:textColor="#888888"
-        android:gravity="center"
-        android:background="@drawable/edittext_border"
+        android:columnCount="7"
+        android:rowCount="4"
+        android:alignmentMode="alignBounds"
         app:layout_constraintTop_toBottomOf="@+id/tvStreakCalendarLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

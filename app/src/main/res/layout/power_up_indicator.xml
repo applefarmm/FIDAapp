@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/powerUpIndicator"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_power_up_indicator"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:visibility="gone">
+
+    <TextView
+        android:id="@+id/tvBoostLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active Boosts:"
+        android:textColor="@color/yellow"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivCoinBoost"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_coin"
+        android:visibility="gone"
+        android:contentDescription="Coin Boost Active" />
+
+    <TextView
+        android:id="@+id/tvCoinMultiplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="2x"
+        android:textColor="@color/yellow"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/ivXpBoost"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_xp"
+        android:visibility="gone"
+        android:contentDescription="XP Boost Active" />
+
+    <TextView
+        android:id="@+id/tvXpMultiplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="2x"
+        android:textColor="@color/yellow"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/ivEnergyBoost"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_gem"
+        android:visibility="gone"
+        android:contentDescription="Energy Boost Active" />
+
+    <TextView
+        android:id="@+id/tvEnergyMultiplier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="2x"
+        android:textColor="@color/yellow"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvTimeRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text=""
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="10sp"
+        android:visibility="gone" />
+
+</LinearLayout>

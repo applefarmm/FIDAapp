@@ -1,0 +1,89 @@
+/* ── Welcome (onboarding step 1) ────────────────────────────────────── */
+.wl-screen {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0d0d1a 0%, #1a1a2e 60%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.wl-container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Progress dots */
+.wl-progress {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.wl-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.3s;
+}
+.wl-dot--active { background: #fff; }
+
+/* Hero graphic */
+.wl-hero {
+  display: flex;
+  justify-content: center;
+}
+.wl-hero-circle {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6C63FF, #9D4EDD);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 60px rgba(108,99,255,0.45);
+}
+.wl-hero-emoji { font-size: 3.5rem; }
+
+/* Header */
+.wl-header { display: flex; flex-direction: column; gap: 0.4rem; text-align: center; }
+.wl-title   { font-size: 1.9rem; font-weight: 800; color: #fff; margin: 0; }
+.wl-subtitle { font-size: 0.95rem; color: #a0a0c0; margin: 0; }
+
+/* Name form */
+.wl-form { display: flex; flex-direction: column; gap: 0.5rem; }
+.wl-label { font-size: 0.88rem; color: #a0a0c0; font-weight: 500; }
+.wl-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.wl-input::placeholder { color: #555577; }
+.wl-input:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+}
+
+/* CTA button */
+.wl-continue {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #6C63FF, #9D4EDD);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.wl-continue:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.wl-continue:disabled { opacity: 0.4; cursor: not-allowed; }
