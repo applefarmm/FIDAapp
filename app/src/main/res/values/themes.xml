@@ -28,4 +28,12 @@
     <style name="Widget.fida.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="android:textColor">@color/blue</item>
     </style>
+
+    <!-- TextInputLayout style with darker border for health questionnaire -->
+    <style name="Widget.fida.TextInputLayout" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="boxStrokeColor">@color/blue</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:textColorHint">#888888</item>
+    </style>
 </resources>

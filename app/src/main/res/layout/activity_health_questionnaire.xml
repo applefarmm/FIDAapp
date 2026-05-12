@@ -54,7 +54,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etWeight"
@@ -67,7 +68,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etHeight"
@@ -80,7 +82,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etAge"
@@ -128,7 +131,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etLastCheckup"
@@ -141,7 +145,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etChronicConditions"
@@ -154,7 +159,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etMedications"
@@ -167,7 +173,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            style="@style/Widget.fida.TextInputLayout">
 
             <EditText
                 android:id="@+id/etAllergies"
@@ -206,7 +213,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                style="@style/Widget.fida.TextInputLayout">
 
                 <EditText
                     android:id="@+id/etSleepHours"
@@ -367,7 +375,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                style="@style/Widget.fida.TextInputLayout">
 
                 <EditText
                     android:id="@+id/etInjuries"
@@ -380,7 +389,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                style="@style/Widget.fida.TextInputLayout">
 
                 <EditText
                     android:id="@+id/etFitnessGoals"

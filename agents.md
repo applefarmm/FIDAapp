@@ -1,6 +1,6 @@
 # FIDA App - HANDOFF Notes
 
-**Last Updated:** 2026-05-13 (UI Overlaps Fixed + Summary Aligned)
+**Last Updated:** 2026-05-13 (AI Health Assistant Implemented + Gemini Integration)
 **Project:** FIDA - Gamified Fitness Android App (Kotlin + Firebase)
 
 ---
@@ -13,9 +13,9 @@
 - **UI:** XML ViewBinding + DataBinding (NOT Jetpack Compose)
 - **Backend:** Firebase (Auth, Firestore, Realtime Database) via direct SDK calls
 - **State:** SharedPreferences (`PreferenceHelper`) + direct Firestore reads/writes
-- **Async:** Firebase callbacks (`addOnSuccessListener` / `addOnFailureListener`)
-- **DI:** None — singleton objects (`FirestoreRepository`, `GameManager`) + manual instantiation
-- **Build:** Gradle with Kotlin DSL
+
+
+
 - **compileSdk:** 36 / **minSdk:** 28 / **targetSdk:** 36
 
 **Repo also contains a separate React web app** (`src/`, `dist/`) but it's independent from the Android app.
