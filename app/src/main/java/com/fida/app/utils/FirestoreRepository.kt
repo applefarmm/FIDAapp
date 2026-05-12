@@ -306,6 +306,32 @@ object FirestoreRepository {
 
         android.util.Log.d("FirestoreRepository", "Saving health profile for UID: $uid")
 
+        // First ensure user document exists
+        db.collection("users").document(uid).get()
+            .addOnSuccessListener { userDoc ->
+                if (!userDoc.exists()) {
+                    // Create user document if it doesn't exist
+                    android.util.Log.d("FirestoreRepository", "User document doesn't exist, creating it")
+                    db.collection("users").document(uid).set(mapOf("uid" to uid))
+                        .addOnSuccessListener {
+                            saveHealthProfileToFirestore(uid, profileMap, onDone)
+                        }
+                        .addOnFailureListener { exception ->
+                            android.util.Log.e("FirestoreRepository", "Failed to create user document: ${exception.message}", exception)
+                            onDone(false)
+                        }
+                } else {
+                    // User document exists, save health profile
+                    saveHealthProfileToFirestore(uid, profileMap, onDone)
+                }
+            }
+            .addOnFailureListener { exception ->
+                android.util.Log.e("FirestoreRepository", "Failed to check user document: ${exception.message}", exception)
+                onDone(false)
+            }
+    }
+
+    private fun saveHealthProfileToFirestore(uid: String, profileMap: Map<String, Any>, onDone: (Boolean) -> Unit) {
         db.collection("users").document(uid).collection("healthProfile").document("current")
             .set(profileMap)
             .addOnSuccessListener {
