@@ -276,6 +276,12 @@ object FirestoreRepository {
     )
 
     fun saveHealthProfile(uid: String, profile: com.fida.app.models.HealthProfile, onDone: (Boolean) -> Unit) {
+        if (uid.isEmpty()) {
+            android.util.Log.e("FirestoreRepository", "saveHealthProfile: UID is empty")
+            onDone(false)
+            return
+        }
+
         val profileMap = mapOf(
             "uid" to profile.uid,
             "lastUpdated" to profile.lastUpdated,
@@ -298,10 +304,18 @@ object FirestoreRepository {
             "injuries" to profile.injuries
         )
 
+        android.util.Log.d("FirestoreRepository", "Saving health profile for UID: $uid")
+
         db.collection("users").document(uid).collection("healthProfile").document("current")
             .set(profileMap)
-            .addOnSuccessListener { onDone(true) }
-            .addOnFailureListener { onDone(false) }
+            .addOnSuccessListener {
+                android.util.Log.d("FirestoreRepository", "Health profile saved successfully")
+                onDone(true)
+            }
+            .addOnFailureListener { exception ->
+                android.util.Log.e("FirestoreRepository", "Failed to save health profile: ${exception.message}", exception)
+                onDone(false)
+            }
     }
 
     fun getHealthProfile(uid: String, onResult: (com.fida.app.models.HealthProfile?) -> Unit) {

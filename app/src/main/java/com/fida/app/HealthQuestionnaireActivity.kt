@@ -224,6 +224,13 @@ class HealthQuestionnaireActivity : AppCompatActivity() {
     }
 
     private fun saveProfile(profile: HealthProfile) {
+        // Validate UID first
+        if (uid.isEmpty()) {
+            Toast.makeText(this, "Error: User ID not found. Please login again.", Toast.LENGTH_LONG).show()
+            android.util.Log.e("HealthQuestionnaire", "UID is empty")
+            return
+        }
+
         val gson = Gson()
         val profileJson = gson.toJson(profile)
 
@@ -231,14 +238,18 @@ class HealthQuestionnaireActivity : AppCompatActivity() {
         prefs.saveHealthProfile(uid, profileJson)
         prefs.saveHealthProfileUpdateTime(uid)
 
+        android.util.Log.d("HealthQuestionnaire", "Saving profile for UID: $uid")
+
         // Save to Firestore
         FirestoreRepository.saveHealthProfile(uid, profile) { success ->
             if (success) {
+                android.util.Log.d("HealthQuestionnaire", "Profile saved successfully")
                 Toast.makeText(this, "Health profile saved!", Toast.LENGTH_SHORT).show()
                 setResult(RESULT_OK)
                 finish()
             } else {
-                Toast.makeText(this, "Error saving profile", Toast.LENGTH_SHORT).show()
+                android.util.Log.e("HealthQuestionnaire", "Failed to save profile to Firestore")
+                Toast.makeText(this, "Error saving profile to database", Toast.LENGTH_LONG).show()
             }
         }
     }
