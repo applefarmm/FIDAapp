@@ -63,5 +63,17 @@ class PreferenceHelper(context: Context) {
     fun saveMaxSteps(maxSteps: Int) = prefs.edit().putInt("max_steps", maxSteps).apply()
     fun getMaxSteps(): Int = prefs.getInt("max_steps", 2500)
 
+    // Health profile methods
+    fun saveHealthProfile(uid: String, profile: String) = prefs.edit().putString("health_profile_$uid", profile).apply()
+    fun getHealthProfile(uid: String): String? = prefs.getString("health_profile_$uid", null)
+
+    fun saveHealthProfileUpdateTime(uid: String) = prefs.edit().putLong("health_profile_time_$uid", System.currentTimeMillis()).apply()
+    fun getHealthProfileUpdateTime(uid: String): Long = prefs.getLong("health_profile_time_$uid", 0L)
+
+    fun saveLong(key: String, value: Long) = prefs.edit().putLong(key, value).apply()
+    fun getLong(key: String): Long? = if (prefs.contains(key)) prefs.getLong(key, 0L) else null
+
+    fun remove(key: String) = prefs.edit().remove(key).apply()
+
     fun clear() = prefs.edit().clear().apply()
 }

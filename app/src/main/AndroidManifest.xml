@@ -23,6 +23,11 @@
         android:theme="@style/Theme.fida"
         tools:targetApi="31">
 
+        <!-- Google Generative AI API Key -->
+        <meta-data
+            android:name="com.google.ai.generativeai.api_key"
+            android:value="AIzaSyDqApJZ7gI8j0VD7_ynkgTfVTnzHUgS6zQ" />
+
         <!-- Facebook SDK Metadata - DISABLED until proper app ID is configured
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -101,6 +106,9 @@
 
         <!-- Step Counter -->
         <activity android:name=".StepCounterActivity" android:exported="true" />
+
+        <!-- Health Questionnaire -->
+        <activity android:name=".HealthQuestionnaireActivity" android:exported="false" />
 
         <!-- Step Tracking Service -->
         <service

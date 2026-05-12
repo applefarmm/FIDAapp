@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.fida.app.fragments.AchievementsFragment
 import com.fida.app.fragments.ActivitiesFragment
 import com.fida.app.fragments.DashboardFragment
+import com.fida.app.fragments.HealthTipsFragment
 import com.fida.app.fragments.LeaderboardFragment
 import com.fida.app.fragments.ProfileFragment
 import com.fida.app.services.StepTrackingService
@@ -48,8 +49,8 @@ class HomeActivity : AppCompatActivity() {
             val fragment: Fragment = when (item.itemId) {
                 R.id.nav_home -> DashboardFragment()
                 R.id.nav_activities -> ActivitiesFragment()
+                R.id.nav_health -> HealthTipsFragment()
                 R.id.nav_achievements -> AchievementsFragment()
-                R.id.nav_leaderboard -> LeaderboardFragment()
                 R.id.nav_profile -> ProfileFragment()
                 else -> DashboardFragment()
             }

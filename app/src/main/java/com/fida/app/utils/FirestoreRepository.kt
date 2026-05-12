@@ -274,4 +274,47 @@ object FirestoreRepository {
         "badges" to emptyMap<String, Any>(),
         "allDays" to emptyMap<String, Any>()
     )
+
+    fun saveHealthProfile(uid: String, profile: com.fida.app.models.HealthProfile, onDone: (Boolean) -> Unit) {
+        val profileMap = mapOf(
+            "uid" to profile.uid,
+            "lastUpdated" to profile.lastUpdated,
+            "weight" to profile.weight,
+            "height" to profile.height,
+            "age" to profile.age,
+            "gender" to profile.gender,
+            "bmi" to profile.bmi,
+            "sleepHours" to profile.sleepHours,
+            "stressLevel" to profile.stressLevel,
+            "activityLevel" to profile.activityLevel,
+            "fitnessGoals" to profile.fitnessGoals,
+            "chronicConditions" to profile.chronicConditions,
+            "shortnessOfBreath" to profile.shortnessOfBreath,
+            "lastCheckupDate" to profile.lastCheckupDate,
+            "medications" to profile.medications,
+            "allergies" to profile.allergies,
+            "smokingStatus" to profile.smokingStatus,
+            "alcoholFrequency" to profile.alcoholFrequency,
+            "injuries" to profile.injuries
+        )
+
+        db.collection("users").document(uid).collection("healthProfile").document("current")
+            .set(profileMap)
+            .addOnSuccessListener { onDone(true) }
+            .addOnFailureListener { onDone(false) }
+    }
+
+    fun getHealthProfile(uid: String, onResult: (com.fida.app.models.HealthProfile?) -> Unit) {
+        db.collection("users").document(uid).collection("healthProfile").document("current")
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.exists()) {
+                    val profile = doc.toObject(com.fida.app.models.HealthProfile::class.java)
+                    onResult(profile)
+                } else {
+                    onResult(null)
+                }
+            }
+            .addOnFailureListener { onResult(null) }
+    }
 }

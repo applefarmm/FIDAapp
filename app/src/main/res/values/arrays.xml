@@ -15,4 +15,19 @@
         <item>Very Active (6-7 days/week)</item>
         <item>Super Active (twice daily)</item>
     </string-array>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+        <item>Prefer not to say</item>
+    </string-array>
+
+    <string-array name="activity_level_array">
+        <item>Sedentary</item>
+        <item>Light</item>
+        <item>Moderate</item>
+        <item>Active</item>
+        <item>Very Active</item>
+    </string-array>
 </resources>

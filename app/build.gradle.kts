@@ -64,6 +64,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.3.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
+    // Google Generative AI (Gemini) - Using REST API approach
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
     // Facebook SDK
     implementation("com.facebook.android:facebook-android-sdk:18.0.2")
 
