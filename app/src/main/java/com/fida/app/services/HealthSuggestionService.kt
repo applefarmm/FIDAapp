@@ -65,6 +65,8 @@ class HealthSuggestionService(private val context: Context) {
         return@withContext try {
             val url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=$apiKey"
 
+            android.util.Log.d("HealthSuggestionService", "Calling Gemini API: $url")
+
             val requestBody = mapOf(
                 "contents" to listOf(
                     mapOf(
@@ -81,12 +83,17 @@ class HealthSuggestionService(private val context: Context) {
             val request = Request.Builder()
                 .url(url)
                 .post(body)
+                .addHeader("Content-Type", "application/json")
                 .build()
 
             val httpResponse = client.newCall(request).execute()
 
+            android.util.Log.d("HealthSuggestionService", "API Response Code: ${httpResponse.code}")
+
             if (httpResponse.isSuccessful) {
                 val responseBody = httpResponse.body?.string() ?: ""
+                android.util.Log.d("HealthSuggestionService", "API Response: $responseBody")
+                
                 val responseJson = gson.fromJson(responseBody, Map::class.java)
 
                 @Suppress("UNCHECKED_CAST")
@@ -104,12 +111,15 @@ class HealthSuggestionService(private val context: Context) {
                 if (text != null) {
                     Result.success(text)
                 } else {
-                    Result.failure(Exception("Invalid response format"))
+                    Result.failure(Exception("Invalid response format from API"))
                 }
             } else {
-                Result.failure(Exception("API Error: ${httpResponse.code}"))
+                val errorBody = httpResponse.body?.string() ?: "No error details"
+                android.util.Log.e("HealthSuggestionService", "API Error ${httpResponse.code}: $errorBody")
+                Result.failure(Exception("API Error ${httpResponse.code}: $errorBody"))
             }
         } catch (e: Exception) {
+            android.util.Log.e("HealthSuggestionService", "Exception calling Gemini API", e)
             Result.failure(e)
         }
     }
