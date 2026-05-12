@@ -1,5 +1,6 @@
 package com.fida.app
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +14,9 @@ import com.fida.app.models.HealthProfile
 import com.fida.app.utils.FirestoreRepository
 import com.fida.app.utils.PreferenceHelper
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.pow
 
 class HealthQuestionnaireActivity : AppCompatActivity() {
@@ -76,6 +80,11 @@ class HealthQuestionnaireActivity : AppCompatActivity() {
         etMedications = findViewById(R.id.etMedications)
         etAllergies = findViewById(R.id.etAllergies)
 
+        // Setup date picker for Last Checkup
+        etLastCheckup.setOnClickListener { showDatePicker() }
+        etLastCheckup.isFocusable = false
+        etLastCheckup.isClickable = true
+
         // Screen 3
         etSleepHours = findViewById(R.id.etSleepHours)
         seekBarStress = findViewById(R.id.seekBarStress)
@@ -106,6 +115,44 @@ class HealthQuestionnaireActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        
+        // If a date is already selected, use it as the initial date
+        if (etLastCheckup.text.isNotEmpty()) {
+            try {
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val date = sdf.parse(etLastCheckup.text.toString())
+                if (date != null) {
+                    calendar.time = date
+                }
+            } catch (e: Exception) {
+                // Use current date if parsing fails
+            }
+        }
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedCalendar = Calendar.getInstance()
+                selectedCalendar.set(selectedYear, selectedMonth, selectedDay)
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                etLastCheckup.setText(sdf.format(selectedCalendar.time))
+            },
+            year,
+            month,
+            day
+        )
+
+        // Set max date to today
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.show()
     }
 
     private fun showScreen(screen: Int) {

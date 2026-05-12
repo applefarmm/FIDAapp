@@ -132,14 +132,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/Widget.fida.TextInputLayout">
+            style="@style/Widget.fida.TextInputLayout"
+            app:endIconMode="custom"
+            app:endIconDrawable="@android:drawable/ic_menu_today">
 
             <EditText
                 android:id="@+id/etLastCheckup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Last Checkup Date (optional)"
-                android:inputType="date" />
+                android:inputType="none"
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
